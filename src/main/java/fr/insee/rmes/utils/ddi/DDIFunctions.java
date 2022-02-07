@@ -24,7 +24,7 @@ import org.xml.sax.SAXException;
 
 public class DDIFunctions {
 
-	final static Logger logger = LogManager.getLogger(DDIFunctions.class);
+	static final Logger logger = LogManager.getLogger(DDIFunctions.class);
 
 	public static Map<String, String> getDDIControlConstructReferenceListFromFragment(String fragment)
 			throws RuntimeException {
