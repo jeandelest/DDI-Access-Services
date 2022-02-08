@@ -18,10 +18,14 @@ public class Operation {
 	@Setter
 	@JsonProperty("id")
 	String id;
+	
+	@Getter @Setter
+	@JsonProperty("serie")
+	List<Serie> serie;
 
 	@Override
 	public String toString() {
-		return "Serie [labels=" + labels + ", id=" + id + "]";
+		return "Operation [labels=" + labels + ", id=" + id + ", serie=" + serie + "]";
 	}
 
 }
