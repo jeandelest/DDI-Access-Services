@@ -58,12 +58,15 @@ public class GestionClientImpl implements GestionClient{
 		logger.info("GET serie {} from gestion metadata API", id);
 		ResponseEntity<Operation[]> response;
 		response = restTemplate.exchange(url, HttpMethod.GET, null, Operation[].class);
-		//A corriger quand le WS sera mis jour pour ne renvoyer qu'un objet au lieu d'un tableau d'un seul objet
-		if (response.getBody().length!=0) {
+		// A corriger quand le WS sera mis jour pour ne renvoyer qu'un objet au lieu
+		// d'un tableau d'un seul objet
+		Operation[] operations = response.getBody();
+		if (operations != null && operations.length != 0) {
 			return Arrays.asList(response.getBody()).get(0);
 		} else {
 			throw new DDIAccessServicesException(404, "Not found", "No operation found for this id");
 		}
+
 	}
 
 }
