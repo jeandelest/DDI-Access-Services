@@ -1,5 +1,6 @@
 package fr.insee.rmes.exceptions;
 
+import fr.insee.rmes.webservice.rest.RestMessage;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +25,9 @@ public class DDIAccessServicesException extends Exception {
 		this.status = status;
 		this.details = details;
 	}
+	
+    public RestMessage toRestMessage(){
+        return new RestMessage(this.status, this.getMessage(), this.details);
+    }
 
 }
