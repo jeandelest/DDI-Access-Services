@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import fr.insee.rmes.exceptions.DDIAccessServicesException;
 import fr.insee.rmes.gestion.model.Operation;
+import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Serie;
 import fr.insee.rmes.gestion.repository.GestionRepository;
 import fr.insee.rmes.gestion.utils.UserInputValidation;
@@ -32,6 +33,14 @@ public class GestionServiceImpl implements GestionService{
 	public List<Operation> getOperationsBySerieId(String id) throws Exception{
 		if (UserInputValidation.validateSerieId(id)) {
 			return gestionRepository.getOperationsBySerieId(id);
+		} else {
+			throw new DDIAccessServicesException(500,"Invalid identifier","Identifier "+id+" is invalid");
+		}
+	}
+	
+	public Operation getOperationById(String id) throws Exception{
+		if (UserInputValidation.validateSerieId(id)) {
+			return gestionRepository.getOperationById(id);
 		} else {
 			throw new DDIAccessServicesException(500,"Invalid identifier","Identifier "+id+" is invalid");
 		}

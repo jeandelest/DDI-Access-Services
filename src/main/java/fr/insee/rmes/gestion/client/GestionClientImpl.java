@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import fr.insee.rmes.exceptions.DDIAccessServicesException;
+import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Serie;
 
@@ -49,6 +51,19 @@ public class GestionClientImpl implements GestionClient{
 		ResponseEntity<Operation[]> response;
 		response = restTemplate.exchange(url, HttpMethod.GET, null, Operation[].class);
 		return Arrays.asList(response.getBody());
+	}
+	
+	public Operation getOperationById(String id) throws Exception {
+		String url = String.format("%s/operations/operation/%s/", gestionMetadataUrl, id);
+		logger.info("GET serie {} from gestion metadata API", id);
+		ResponseEntity<Operation[]> response;
+		response = restTemplate.exchange(url, HttpMethod.GET, null, Operation[].class);
+		//A corriger quand le WS sera mis jour pour ne renvoyer qu'un objet au lieu d'un tableau d'un seul objet
+		if (response.getBody().length!=0) {
+			return Arrays.asList(response.getBody()).get(0);
+		} else {
+			throw new DDIAccessServicesException(404, "Not found", "No operation found for this id");
+		}
 	}
 
 }

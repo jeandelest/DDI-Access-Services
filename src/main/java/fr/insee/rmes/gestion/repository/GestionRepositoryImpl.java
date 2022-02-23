@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fr.insee.rmes.gestion.client.GestionClient;
 import fr.insee.rmes.gestion.model.Operation;
+import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Serie;
 
 @Service
@@ -29,6 +30,10 @@ public class GestionRepositoryImpl implements GestionRepository{
 	
 	public List<Operation> getOperationsBySerieId(String id) throws Exception {
 		return gestionClient.getOperationsBySerieId(id);		
+	}
+	
+	public Operation getOperationById(String id) throws Exception{
+		return gestionClient.getOperationById(id);
 	}
 
 }

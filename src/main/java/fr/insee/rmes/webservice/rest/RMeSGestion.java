@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import fr.insee.rmes.exceptions.DDIAccessServicesException;
 import fr.insee.rmes.gestion.model.Operation;
+import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Serie;
 import fr.insee.rmes.gestion.service.GestionService;
 import io.swagger.annotations.Api;
@@ -37,6 +38,7 @@ import io.swagger.annotations.ApiResponse;
 @ApiResponses(value = { 
 		@ApiResponse(code = 200, message = "Success"), 
 		@ApiResponse(code = 204, message = "No Content"),
+		@ApiResponse(code = 404, message = "Not found"),
 		@ApiResponse(code = 500, message = "Internal server error") })
 public class RMeSGestion {
 	
@@ -62,7 +64,7 @@ public class RMeSGestion {
 	@GET
 	@Path("serie/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "Get the lists of series corresponding to a survey", notes = "Get the lists of series corresponding to a survey from API exposing gestion metadata", response = Serie.class)
+	@ApiOperation(value = "Get a serie by its id", notes = "Get the serie corresponding to the id provided", response = Serie.class)
 	public Response getSerieById(@PathParam(value = "id") String id) throws Exception {
 		Serie serie = new Serie();
 		try {
@@ -76,7 +78,7 @@ public class RMeSGestion {
 	@GET
 	@Path("series/{id}/operations")
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "Get the lists of series corresponding to a survey", notes = "Get the lists of series corresponding to a survey from API exposing gestion metadata", response = Serie.class)
+	@ApiOperation(value = "Get the lists of operations of a serie", notes = "Get the lists of operations existing in a serie", response = Serie.class)
 	public Response getOperationsBySerie(@PathParam(value = "id") String id) throws Exception {
 		List<Operation> operations = new ArrayList<>();
 		try {
@@ -88,6 +90,20 @@ public class RMeSGestion {
 			return Response.status(e.getStatus()).entity(e.getDetails()).type(TEXT_PLAIN).build();
 		}
 		return Response.ok().entity(operations).build();
+	}
+	
+	@GET
+	@Path("operation/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Get an operation by its id", notes = "Get the operation corresponding to the id provided", response = Operation.class)
+	public Response getOperationById(@PathParam(value = "id") String id) throws Exception {
+		Operation op = new Operation();
+		try {
+			op = gestionService.getOperationById(id);
+		} catch (DDIAccessServicesException e) {
+			return Response.status(e.getStatus()).entity(e.getDetails()).type(MediaType.TEXT_PLAIN).build();
+		}
+		return Response.ok().entity(op).build();
 	}
 
 }
