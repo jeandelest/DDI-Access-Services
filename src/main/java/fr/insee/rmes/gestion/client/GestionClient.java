@@ -3,7 +3,6 @@ package fr.insee.rmes.gestion.client;
 import java.util.List;
 
 import fr.insee.rmes.gestion.model.Operation;
-import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Serie;
 
 public interface GestionClient {

@@ -2,7 +2,6 @@ package fr.insee.rmes.gestion.client;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import fr.insee.rmes.exceptions.DDIAccessServicesException;
-import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Serie;
 

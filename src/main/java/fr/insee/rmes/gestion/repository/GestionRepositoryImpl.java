@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import fr.insee.rmes.gestion.client.GestionClient;
 import fr.insee.rmes.gestion.model.Operation;
-import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Serie;
 
 @Service

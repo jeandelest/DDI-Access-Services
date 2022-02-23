@@ -2,17 +2,16 @@ package fr.insee.rmes.exceptions;
 
 import fr.insee.rmes.webservice.rest.RestMessage;
 import lombok.Getter;
-import lombok.Setter;
 
 public class DDIAccessServicesException extends Exception {
 
 	private static final long serialVersionUID = 6672048722210118333L;
 	
-	@Getter @Setter
-	private int status;
+	@Getter
+	private final int status;
 	
-	@Getter @Setter
-	private String details;
+	@Getter
+	private final String details;
 
 	/**
 	 *
