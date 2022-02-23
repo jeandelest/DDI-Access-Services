@@ -21,7 +21,7 @@ public class Operation {
 	
 	@Getter @Setter
 	@JsonProperty("serie")
-	List<Serie> serie;
+	Serie serie;
 
 	@Override
 	public String toString() {

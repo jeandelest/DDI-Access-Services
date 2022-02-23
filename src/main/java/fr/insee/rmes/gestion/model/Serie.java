@@ -11,26 +11,26 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Serie {
 	
-	@Getter
-	@Setter
+	@Getter @Setter
 	@JsonProperty("label")
 	List<Label> labels;
 	
-	@Getter
-	@Setter
+	@Getter @Setter
 	@JsonProperty("id")
 	String id;
 	
-	@Getter
-	@Setter
+	@Getter @Setter
 	@JsonProperty("frequence")
-	List<Frequence> frequences;
+	Frequence frequence;
+	
+	@Getter @Setter
+	@JsonProperty("nbOperation")
+	String nbOperation;
 
 	@Override
 	public String toString() {
-		return "Serie [labels=" + labels + ", id=" + id + ", frequence=" + frequences + "]";
+		return "Serie [labels=" + labels + ", id=" + id + ", frequences=" + frequence + ", nbOperation="
+				+ nbOperation + "]";
 	}
-
-
 
 }
