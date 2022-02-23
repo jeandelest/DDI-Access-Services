@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 
 import fr.insee.rmes.exceptions.DDIAccessServicesException;
 import fr.insee.rmes.gestion.model.Operation;
-import fr.insee.rmes.gestion.model.Operation;
 import fr.insee.rmes.gestion.model.Serie;
 import fr.insee.rmes.gestion.repository.GestionRepository;
-import fr.insee.rmes.gestion.utils.UserInputValidation;
 
 @Service
 public class GestionServiceImpl implements GestionService{
